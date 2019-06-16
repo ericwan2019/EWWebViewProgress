@@ -17,11 +17,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSTimeInterval fadeOutDelay;          //default 0.1
 @property (nonatomic, strong) UIColor *barColor;                    //default RGB(22,126,251)
 
-@property (nonatomic, assign) float progress;
+@property (nonatomic, assign) float progress;                       //progress 0.0...1.0， default 0, bar width = 0
 
 
+/**
+ update progress bar progress with animation
+
+ @param progress progress 0.0...1.0
+ @param animated animated
+ */
 - (void)setProgress:(float)progress animated:(BOOL)animated;
 
+/**
+ update progress bar progress without animation
+ 
+ @param progress progress 0.0...1.0
+ */
 - (void)setProgress:(float)progress;
 
 @end

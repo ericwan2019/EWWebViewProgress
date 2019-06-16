@@ -10,7 +10,7 @@
 
 
 @interface EWWebViewProgressView ()
-@property (nonatomic, strong) UIView *progressBarView; //进度条
+@property (nonatomic, strong) UIView *progressBarView; //progress bar
 @end
 
 
@@ -41,7 +41,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    //进行进度条的动画
+    //update progress bar view width with animation
     [UIView animateWithDuration:duration delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
         __strong typeof(self) strongSelf = weakSelf;
         CGRect frame = strongSelf.progressBarView.frame;
@@ -52,9 +52,33 @@
     }];
     
     
+    //update prigress bar view hidden state
+    [self _updateProgressViewState:progress animation:animated];
+   
+}
 
+- (void)setBarColor:(UIColor *)barColor {
+    _barColor = barColor;
+    self.progressBarView.backgroundColor = barColor;
+}
+
+#pragma mark - Private
+- (void)_setupUIs {
+    _progressBarView = [[UIView alloc] initWithFrame:self.bounds];
+    _barColor =  [UIColor colorWithRed:22.f / 255.f green:126.f / 255.f blue:251.f / 255.f alpha:1.0]; 
+    _progressBarView.backgroundColor = _barColor;
+    [self addSubview:_progressBarView];
+    
+    _barAnimationDuration = 0.1;
+    _fadeOutDelay = 0.1;
+    _fadeAnimationDuration = 0.3;
+    self.progress = 0;
+}
+
+- (void)_updateProgressViewState:(float)progress animation:(BOOL)animated {
     NSTimeInterval fadeout = animated ? _fadeAnimationDuration : 0;
-    //移除动画
+    __weak typeof(self) weakSelf = self;
+        //移除动画
     if (progress >= 1.0) {
         [UIView animateWithDuration:fadeout delay:self.fadeOutDelay options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
             __strong typeof(self) strongSelf = weakSelf;
@@ -74,24 +98,6 @@
         }];
     }
     
-}
-
-- (void)setBarColor:(UIColor *)barColor {
-    _barColor = barColor;
-    self.progressBarView.backgroundColor = barColor;
-}
-
-#pragma mark - Private
-- (void)_setupUIs {
-    _progressBarView = [[UIView alloc] initWithFrame:self.bounds];
-    _barColor =  [UIColor colorWithRed:22.f / 255.f green:126.f / 255.f blue:251.f / 255.f alpha:1.0]; // iOS Safari bar color
-    _progressBarView.backgroundColor = _barColor;
-    [self addSubview:_progressBarView];
-    
-    _barAnimationDuration = 0.1;
-    _fadeOutDelay = 0.1;
-    _fadeAnimationDuration = 0.3;
-    self.progress = 0;
 }
 
 @end
