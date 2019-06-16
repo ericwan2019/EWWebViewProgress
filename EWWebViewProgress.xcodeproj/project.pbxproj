@@ -15,6 +15,7 @@
 		250AFA6022B674E2008EA92C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AFA5F22B674E2008EA92C /* main.m */; };
 		250AFA6A22B674E2008EA92C /* EWWebViewProgressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AFA6922B674E2008EA92C /* EWWebViewProgressTests.m */; };
 		250AFA7522B674E2008EA92C /* EWWebViewProgressUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AFA7422B674E2008EA92C /* EWWebViewProgressUITests.m */; };
+		250AFA8522B67832008EA92C /* EWWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AFA8422B67832008EA92C /* EWWebViewProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		250AFA7022B674E2008EA92C /* EWWebViewProgressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EWWebViewProgressUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		250AFA7422B674E2008EA92C /* EWWebViewProgressUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWWebViewProgressUITests.m; sourceTree = "<group>"; };
 		250AFA7622B674E2008EA92C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		250AFA8322B67832008EA92C /* EWWebViewProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWWebViewProgressView.h; sourceTree = "<group>"; };
+		250AFA8422B67832008EA92C /* EWWebViewProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWWebViewProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 		250AFA8222B67522008EA92C /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				250AFA8322B67832008EA92C /* EWWebViewProgressView.h */,
+				250AFA8422B67832008EA92C /* EWWebViewProgressView.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				250AFA5522B674DD008EA92C /* ViewController.m in Sources */,
 				250AFA6022B674E2008EA92C /* main.m in Sources */,
 				250AFA5222B674DD008EA92C /* AppDelegate.m in Sources */,
+				250AFA8522B67832008EA92C /* EWWebViewProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
