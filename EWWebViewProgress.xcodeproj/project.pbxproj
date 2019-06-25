@@ -16,6 +16,7 @@
 		250AFA6A22B674E2008EA92C /* EWWebViewProgressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AFA6922B674E2008EA92C /* EWWebViewProgressTests.m */; };
 		250AFA7522B674E2008EA92C /* EWWebViewProgressUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AFA7422B674E2008EA92C /* EWWebViewProgressUITests.m */; };
 		250AFA8522B67832008EA92C /* EWWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AFA8422B67832008EA92C /* EWWebViewProgressView.m */; };
+		2573D81322C260CD004A4D30 /* EWWebViewProgressProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573D81222C260CD004A4D30 /* EWWebViewProgressProxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		250AFA7622B674E2008EA92C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250AFA8322B67832008EA92C /* EWWebViewProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWWebViewProgressView.h; sourceTree = "<group>"; };
 		250AFA8422B67832008EA92C /* EWWebViewProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWWebViewProgressView.m; sourceTree = "<group>"; };
+		2573D81122C260CD004A4D30 /* EWWebViewProgressProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWWebViewProgressProxy.h; sourceTree = "<group>"; };
+		2573D81222C260CD004A4D30 /* EWWebViewProgressProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWWebViewProgressProxy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 			children = (
 				250AFA8322B67832008EA92C /* EWWebViewProgressView.h */,
 				250AFA8422B67832008EA92C /* EWWebViewProgressView.m */,
+				2573D81122C260CD004A4D30 /* EWWebViewProgressProxy.h */,
+				2573D81222C260CD004A4D30 /* EWWebViewProgressProxy.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				250AFA5522B674DD008EA92C /* ViewController.m in Sources */,
 				250AFA6022B674E2008EA92C /* main.m in Sources */,
 				250AFA5222B674DD008EA92C /* AppDelegate.m in Sources */,
+				2573D81322C260CD004A4D30 /* EWWebViewProgressProxy.m in Sources */,
 				250AFA8522B67832008EA92C /* EWWebViewProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
