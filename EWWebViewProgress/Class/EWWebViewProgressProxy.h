@@ -12,8 +12,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class EWWebViewProgressProxy;
+@protocol EWWebViewProgressDelegate <NSObject>
+
+@optional
+- (void)webViewProgressProxy:(EWWebViewProgressProxy *)webViewProgressProxy progress:(float)progress;
+
+@end
+
+
 @interface EWWebViewProgressProxy : NSObject
 
+//progress delegate
+@property (nonatomic, weak) id<EWWebViewProgressDelegate>progressDelegate;
 
 /**
  set proxy webview（wkwebview / uiwebview)
