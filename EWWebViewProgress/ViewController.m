@@ -27,7 +27,7 @@
     self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.webView];
     self.webView.navigationDelegate = self;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.qq.com"]]];
     
     self.webViewProxy = [[EWWebViewProgressProxy alloc] init];
     [self.webViewProxy setProxyWebView:self.webView];

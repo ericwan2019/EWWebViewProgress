@@ -20,12 +20,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+typedef void(^EWWebViewProgressProxyBlock)(float progress);
 
 @interface EWWebViewProgressProxy : NSObject
 
 //progress delegate
 @property (nonatomic, weak) id<EWWebViewProgressDelegate>progressDelegate;
 
+//current prigress
+@property (nonatomic, assign, readonly) float progress;
+
+//progress block. if you dont wanna use delegate, you can use this block
+@property (nonatomic, copy) EWWebViewProgressProxyBlock progressProxyBlock;
 /**
  set proxy webview（wkwebview / uiwebview)
 
