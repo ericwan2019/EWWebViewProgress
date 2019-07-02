@@ -14,13 +14,9 @@ float const EWWebViewProgressProxyFinalValue = 0.85;
 float const EWWebViewProgressProxyInteractiveValue = 0.5;
 
 
-@interface EWWebViewProgressProxy () <UIWebViewDelegate, WKNavigationDelegate>
+@interface EWWebViewProgressProxy () <UIWebViewDelegate>
 @property (nonatomic, weak) WKWebView *wkWebView;
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-@property (nonatomic, weak) UIWebView *webView;
-#pragma clang diagnostic pop
 @property (nonatomic, assign) float currentProgress;
 @end
 
@@ -35,26 +31,18 @@ float const EWWebViewProgressProxyInteractiveValue = 0.5;
     return self;
 }
 
-
-- (void)setProxyWebView:(id)webView {
-    NSAssert(webView != nil, @"webView cannot be nil");
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    NSAssert(![webView isKindOfClass:[WKWebView class]] || ![webView isKindOfClass:[UIWebView class]], @"webView must be UIWebView or WKWebView");
+- (void)addWKWebViewProxy:(WKWebView *)wkWebView {
+    NSAssert(wkWebView != nil, @"webView cannot be nil");
+ 
     if (self.wkWebView) {
         [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
     }
     
     self.wkWebView = nil;
-    self.webView = nil;
-    if ([webView isKindOfClass:[WKWebView class]]) {
-        self.wkWebView = (WKWebView *)webView;
+    if ([wkWebView isKindOfClass:[WKWebView class]]) {
+        self.wkWebView = (WKWebView *)wkWebView;
         [self _wkWebViewObserver];
-    } else if ([webView isKindOfClass:[UIWebView class]]) {
-        self.webView = (UIWebView *)webView;
     }
-#pragma clang diagnostic pop
-    
 }
 
 - (void)dealloc {
@@ -63,6 +51,34 @@ float const EWWebViewProgressProxyInteractiveValue = 0.5;
         self.wkWebView = nil;
     }
 }
+
+#pragma mark - UIWebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    if (self.weakWebViewDelegate && [self.weakWebViewDelegate respondsToSelector:@selector(webViewDidStartLoad:)]) {
+        [self.weakWebViewDelegate webViewDidStartLoad:webView];
+    }
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if (self.weakWebViewDelegate && [self.weakWebViewDelegate respondsToSelector:@selector(webViewDidFinishLoad:)]) {
+        [self.weakWebViewDelegate webViewDidFinishLoad:webView];
+    }
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    if (self.weakWebViewDelegate && [self.weakWebViewDelegate respondsToSelector:@selector(webView:didFailLoadWithError:)]) {
+        [self.weakWebViewDelegate webView:webView didFailLoadWithError:error];
+    }
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    BOOL ret = YES;
+    if (self.weakWebViewDelegate && [self.weakWebViewDelegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) {
+        ret = [self.weakWebViewDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+    }
+    return ret;
+}
+
 
 #pragma mark - Observer
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {

@@ -23,18 +23,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.view setBackgroundColor:UIColor.whiteColor];
     
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:UIColor.whiteColor] forBarMetrics:UIBarMetricsDefault];
+    
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].bounds) - 64)];
     [self.view addSubview:self.webView];
     self.webView.navigationDelegate = self;
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.qq.com"]]];
     
     self.webViewProxy = [[EWWebViewProgressProxy alloc] init];
-    [self.webViewProxy setProxyWebView:self.webView];
+    [self.webViewProxy addWKWebViewProxy:self.webView];
     self.webViewProxy.progressDelegate = self;
  
-    self.progressView = [[EWWebViewProgressView alloc] initWithFrame:CGRectMake(0, 44, [UIScreen mainScreen].bounds.size.width, 2)];
-    [self.view addSubview:self.progressView];
+    self.progressView = [[EWWebViewProgressView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.navigationController.navigationBar.frame)-2, [UIScreen mainScreen].bounds.size.width, 2)];
+    NSLog(@"height = %f",CGRectGetHeight(self.navigationController.navigationBar.frame));
+    [self.navigationController.navigationBar addSubview:self.progressView];
 }
 
 
@@ -77,5 +82,20 @@
         //不允许跳转
         //decisionHandler(WKNavigationActionPolicyCancel);
 }
+
+
+#pragma mark - Private
+- (UIImage*)createImageWithColor:(UIColor*) color{
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return theImage;
+}
+
 
 @end

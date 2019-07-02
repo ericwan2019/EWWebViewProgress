@@ -32,13 +32,16 @@ typedef void(^EWWebViewProgressProxyBlock)(float progress);
 
 //progress block. if you dont wanna use delegate, you can use this block
 @property (nonatomic, copy) EWWebViewProgressProxyBlock progressProxyBlock;
+
 /**
- set proxy webview（wkwebview / uiwebview)
-
- @param webView proxy webview
+ set progress proxy for wkWebView
+ 
+ @param wkWebView proxy webview
  */
-- (void)setProxyWebView:(id)webView;
+- (void)addWKWebViewProxy:(WKWebView *)wkWebView;
 
+//UIWebView delegate
+@property (nonatomic, weak) id<UIWebViewDelegate> weakWebViewDelegate;
 @end
 
 NS_ASSUME_NONNULL_END
